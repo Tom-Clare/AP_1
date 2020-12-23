@@ -16,8 +16,11 @@ Good luck!
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "Menu.h"
+#include "Menu.cpp"
 #include "Order.h"
+#include "Order.cpp"
 #include "Item.h"
+#include "Item.cpp"
 
 #include <iostream>
 #include <vector>
