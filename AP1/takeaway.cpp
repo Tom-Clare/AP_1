@@ -16,11 +16,8 @@ Good luck!
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "Menu.h"
-#include "Menu.cpp"
 #include "Order.h"
-#include "Order.cpp"
 #include "Item.h"
-#include "Item.cpp"
 
 #include <iostream>
 #include <vector>
@@ -61,8 +58,8 @@ int main()
 		}
 		else if (command.compare("add") == 0)
 		{
-			Item* choice; // you need to instantiate this using the menu object!
-			order.add(choice);
+			//Item* choice; // you need to instantiate this using the menu object!
+			//order.add(choice);
 
 			// You may also wish to implement the ability to add multiple items at once!
 			// e.g. add 1 5 9 

@@ -3,6 +3,8 @@
 #include <string>
 #include "Item.h"
 
+using namespace std;
+
 class Beverage
 {
 private:

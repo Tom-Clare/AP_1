@@ -2,6 +2,8 @@
 
 #include "Item.h"
 
+using namespace std;
+
 class Order
 {
 public:

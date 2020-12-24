@@ -1,2 +1,2 @@
-﻿  takeaway.cpp
-C:\Users\apric\Documents\uni\Year 2\AP1\AP1\takeaway.cpp(65): error C4700: uninitialized local variable 'choice' used
+﻿  Menu.cpp
+  AP1.vcxproj -> C:\Users\apric\Documents\uni\Year 2\AP1\Debug\AP1.exe

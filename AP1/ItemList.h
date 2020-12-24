@@ -3,6 +3,8 @@
 #include "Item.h"
 #include <vector>
 
+using namespace std;
+
 class ItemList
 {
 public:
