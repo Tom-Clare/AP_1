@@ -13,8 +13,9 @@ Menu::Menu(std::string given_conf_file) {
 
 	if (active_conf_file.is_open()) { // Successfully opened
 		while (std::getline(active_conf_file, line)) {
-			std::cout << line;  // Remove before production :P
-			Menu::parseLine(line) = menu_item; // Parse the individual line into a vector of tokens which we can then send to be created as an object.
+			Menu::parseLine(line) = menu_item; // Parse this line into a vector of tokens.
+			////////////////////////////// Currently here - completed constructor for appetiser (and item).
+			//  TODO: complete other constructors and then create objects with given letter code from the csv. Will have to cast the indexes as we pass them. We'll also need some sort of try-catch.
 		}
 		active_conf_file.close();
 	}
@@ -31,7 +32,7 @@ std::vector<std::string> Menu::parseLine(std::string line) {
 	line_stream.str(line);
 
 	while (std::getline(line_stream, token, ',')) {
-		result.push_back(token);  /////////////////////////////////////Currently here - we need to see if this is actually working, and then we need to find out what to do with it!! :D
+		result.push_back(token);  
 	}
 	return result;
 }

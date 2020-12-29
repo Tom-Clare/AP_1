@@ -8,11 +8,12 @@ using namespace std;
 class Appetiser: public Item
 {
 private:
-	bool shareable;
-	bool twoForOne;
+	bool shareable_;
+	bool twoForOne_;
 public:
-	bool get_shareable() { return shareable; }
-	bool get_twoForOne() { return twoForOne; }
-	std::string toString() { return get_name(); }
+	Appetiser(std::string, int, double, bool, bool);
+	bool shareable() { return shareable_; }
+	bool twoForOne() { return twoForOne_; }
+	std::string toString() { return name(); }
 };
 

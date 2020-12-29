@@ -7,13 +7,14 @@ using namespace std;
 class Item
 {
 private:
-	std::string name;
-	int calories;
-	double price;
+	std::string name_;
+	int calories_;
+	double price_;
 public:
+	Item(std::string, int, double);
 	virtual std::string toString() = 0;
-	std::string get_name() { return name; }
-	int get_calories() { return calories; }
-	double get_price() { return price; }
+	std::string name() { return name_; }
+	int calories() { return calories_; }
+	double price() { return price_; }
 };
 
