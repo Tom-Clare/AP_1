@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -13,9 +14,10 @@ Menu::Menu(std::string given_conf_file) {
 
 	if (active_conf_file.is_open()) { // Successfully opened
 		while (std::getline(active_conf_file, line)) {
-			Menu::parseLine(line) = menu_item; // Parse this line into a vector of tokens.
+			menu_item = Menu::parseLine(line); // Parse this line into a vector of tokens.
+			cout << menu_item[0];
 			////////////////////////////// Currently here - completed constructor for appetiser (and item).
-			//  TODO: complete other constructors and then create objects with given letter code from the csv. Will have to cast the indexes as we pass them. We'll also need some sort of try-catch.
+			//  TODO: Create objects with given letter code from the csv. Will have to cast the indexes as we pass them. We'll also need some sort of try-catch.
 		}
 		active_conf_file.close();
 	}

@@ -5,14 +5,16 @@
 
 using namespace std;
 
-class Beverage
+class Beverage : public Item
 {
 private:
-	float abv;
-	int volume;
+	float abv_;
+	int volume_;
 public:
-	float get_abv() { return abv; }
-	int get_volume() { return volume; }
+	Beverage(std::string, int, double, float, int);
+	float abv() { return abv_; }
+	int volume() { return volume_; }
+	bool isAlcoholic();
 	// is alcoholic??
 };
 

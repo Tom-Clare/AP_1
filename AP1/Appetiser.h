@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class Appetiser: public Item
+class Appetiser : public Item
 {
 private:
 	bool shareable_;

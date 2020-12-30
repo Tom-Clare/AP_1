@@ -5,9 +5,10 @@
 
 using namespace std;
 
-class MainCourse: public Item
+class MainCourse : public Item
 {
 public:
-	std::string toString() { return get_name(); }
+	MainCourse(std::string, int, double);
+	std::string toString() { return name(); }
 };
 
