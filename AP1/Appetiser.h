@@ -11,7 +11,7 @@ private:
 	bool shareable_;
 	bool twoForOne_;
 public:
-	Appetiser(std::string, int, double, bool, bool);
+	Appetiser(std::string, int, double, std::string, std::string);
 	bool shareable() { return shareable_; }
 	bool twoForOne() { return twoForOne_; }
 	std::string toString() { return name(); }

@@ -9,5 +9,6 @@ class ItemList
 {
 public:
 	std::vector<Item*> items;
+	void Add(Item*);
 };
 

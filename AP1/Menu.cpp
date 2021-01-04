@@ -1,4 +1,7 @@
 #include "Menu.h"
+#include "Appetiser.h"
+#include "Beverage.h"
+#include "MainCourse.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -16,8 +19,12 @@ Menu::Menu(std::string given_conf_file) {
 		while (std::getline(active_conf_file, line)) {
 			menu_item = Menu::parseLine(line); // Parse this line into a vector of tokens.
 			cout << menu_item[0];
-			////////////////////////////// Currently here - completed constructor for appetiser (and item).
-			//  TODO: Create objects with given letter code from the csv. Will have to cast the indexes as we pass them. We'll also need some sort of try-catch.
+			if (menu_item[0] == "a") {
+				// start try catch
+				Appetiser * new_item_address = new Appetiser(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]), menu_item[4], menu_item[5]);
+				// if failed, not sure, error somehow?
+			}
+			/////////////////////////  TODO: Create objects with given letter code from the csv. Will have to cast the indexes as we pass them. Need to do Beverage and MainCourse now
 		}
 		active_conf_file.close();
 	}
