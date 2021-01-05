@@ -20,9 +20,13 @@ Menu::Menu(std::string given_conf_file) {
 			menu_item = Menu::parseLine(line); // Parse this line into a vector of tokens.
 			cout << menu_item[0];
 			if (menu_item[0] == "a") {
-				// start try catch
-				Appetiser * new_item_address = new Appetiser(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]), menu_item[4], menu_item[5]);
-				// if failed, not sure, error somehow?
+				try {
+					Appetiser* new_item_address = new Appetiser(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]), menu_item[4], menu_item[5]);
+				}
+				catch (const std::exception& e) {
+					cout << "menu.csv is invalid.";
+					exit(EXIT_FAILURE);
+				}
 			}
 			/////////////////////////  TODO: Create objects with given letter code from the csv. Will have to cast the indexes as we pass them. Need to do Beverage and MainCourse now
 		}
