@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "Item.h"
 #include "Appetiser.h"
 #include "Beverage.h"
 #include "MainCourse.h"
@@ -18,22 +19,32 @@ Menu::Menu(std::string given_conf_file) {
 	if (active_conf_file.is_open()) { // Successfully opened
 		while (std::getline(active_conf_file, line)) {
 			menu_item = Menu::parseLine(line); // Parse this line into a vector of tokens.
-			cout << menu_item[0];
-			if (menu_item[0] == "a") {
-				try {
-					Appetiser* new_item_address = new Appetiser(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]), menu_item[4], menu_item[5]);
+			try {
+				Item* new_item_address;
+				if (menu_item[0] == "a") {
+					new_item_address = new Appetiser(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]), menu_item[4], menu_item[5]);
+					Add(new_item_address, 'a');
 				}
-				catch (const std::exception& e) {
-					cout << "menu.csv is invalid.";
-					exit(EXIT_FAILURE);
+				else if (menu_item[0] == "m") {
+					new_item_address = new MainCourse(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]));
+					Add(new_item_address, 'm');
+				}
+				else if (menu_item[0] == "b") {
+					new_item_address = new Beverage(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]), std::stoi(menu_item[6]), std::stof(menu_item[7]));
+					Add(new_item_address, 'b');
 				}
 			}
-			/////////////////////////  TODO: Create objects with given letter code from the csv. Will have to cast the indexes as we pass them. Need to do Beverage and MainCourse now
+			catch (const std::exception& e) {
+				cout << "ERROR: menu.csv is invalid.";
+				exit(EXIT_FAILURE);
+			}
+			/////////////////////////  TODO: Objects created, add them tot hte vector of pointers in Menu.
 		}
 		active_conf_file.close();
 	}
 	else {
-		cout << ":("; // File wasn't successfully opened. Maybe exit gracefully?
+		cout << "ERROR: menu.csv could not be opened.";
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -51,5 +62,17 @@ std::vector<std::string> Menu::parseLine(std::string line) {
 }
 
 std::string Menu::toString() {
-	return ""; // Format menu here
+	std:string output = "";
+	for (int i = 0; i < items.size(); i++) {
+		if (type_codes[i] == 'a') { // Appetiser
+			
+		}
+		else if (type_codes[i] == 'm') { // Main Course
+
+		}
+		else if (type_codes[i] == 'b') { // Beverage
+
+		}
+	}
+	return output; // Format menu here
 }

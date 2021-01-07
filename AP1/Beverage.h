@@ -11,7 +11,8 @@ private:
 	float abv_;
 	int volume_;
 public:
-	Beverage(std::string, int, double, float, int);
+	Beverage(std::string, int, double, int, float);
+	string toString() { return name(); }
 	float abv() { return abv_; }
 	int volume() { return volume_; }
 	bool isAlcoholic();

@@ -9,6 +9,7 @@ class ItemList
 {
 public:
 	std::vector<Item*> items;
-	void Add(Item*);
+	std::vector<char> type_codes;
+	void Add(Item*, char);
 };
 
