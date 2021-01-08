@@ -1,4 +1,3 @@
 ﻿  Menu.cpp
 C:\Users\GLaDOS MkII\Documents\uni\projects\second_year\AP\AP1\Menu.cpp(37,33): warning C4101: 'e': unreferenced local variable
-C:\Users\GLaDOS MkII\Documents\uni\projects\second_year\AP\AP1\Menu.cpp(68,31): error C2440: 'initializing': cannot convert from 'Item' to 'Appetiser'
-C:\Users\GLaDOS MkII\Documents\uni\projects\second_year\AP\AP1\Menu.cpp(68,19): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  AP1.vcxproj -> C:\Users\GLaDOS MkII\Documents\uni\projects\second_year\AP\x64\Debug\AP1.exe

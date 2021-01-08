@@ -38,7 +38,7 @@ Menu::Menu(std::string given_conf_file) {
 				cout << "ERROR: menu.csv is invalid.";
 				exit(EXIT_FAILURE);
 			}
-			/////////////////////////  TODO: Objects created, add them tot hte vector of pointers in Menu.
+			/////////////////////////  TODO: format menu toString()
 		}
 		active_conf_file.close();
 	}
@@ -61,18 +61,58 @@ std::vector<std::string> Menu::parseLine(std::string line) {
 	return result;
 }
 
+// This will return the entire menu as a string
 std::string Menu::toString() {
-	std:string output = "";
+
+	std::string output = "";
+	std::string old = "";
+	std::string current = "";
+	std::string heading = "";
+
 	for (int i = 0; i < items.size(); i++) {
-		if (type_codes[i] == 'a') { // Appetiser
-			
-		}
-		else if (type_codes[i] == 'm') { // Main Course
 
-		}
-		else if (type_codes[i] == 'b') { // Beverage
+		auto(*current_item) = items[i]; // can be used to interact with object
 
+		current = type_codes[i];
+		if (current != old) { // new subheading
+			heading = getHeading(current);
+			output.append("--------------- " + heading + " ---------------\n");
 		}
+
+		output.append("(" + std::to_string(i) + ") ");
+		output.append(current_item->name());
+		output.append(": \x9C");
+		output.append(moneyFormat(current_item->price()));
+
+
+		output.append("\n");
+
+		old = current; // Save this type code as previously used
 	}
+
 	return output; // Format menu here
+}
+
+// This will return the respective heading for the type of menu item
+std::string Menu::getHeading(std::string type_code) {
+	if (type_code == "a") {
+		return "Appetisers";
+	}
+	else if (type_code == "m") {
+		return "Main Courses";
+	}
+	else {
+		return "Beverages";
+	}
+}
+
+// Gives out a formatted string
+std::string Menu::moneyFormat(double display_value) {
+	std::string s;
+	std::stringstream sstream;
+	sstream.setf(std::ios::fixed);
+	sstream.precision(2);
+	sstream << display_value;
+
+	return sstream.str();
 }
