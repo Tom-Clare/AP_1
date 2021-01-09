@@ -79,10 +79,11 @@ std::string Menu::toString() {
 			output.append("--------------- " + heading + " ---------------\n");
 		}
 
-		output.append("(" + std::to_string(i) + ") ");
-		output.append(current_item->name());
-		output.append(": \x9C");
-		output.append(moneyFormat(current_item->price()));
+		output.append("(" + std::to_string(i + 1) + ") "); // Display index number + 1
+		output.append(current_item->name() + ": ");
+		output.append(": \x9C " + moneyFormat(current_item->price())); // £ sign and then format because otherwise we have a bunch of zeros
+		output.append(", ");
+		output.append(std::to_string(current_item->calories()) + " cal ");
 
 
 		output.append("\n");
@@ -111,7 +112,7 @@ std::string Menu::moneyFormat(double display_value) {
 	std::string s;
 	std::stringstream sstream;
 	sstream.setf(std::ios::fixed);
-	sstream.precision(2);
+	sstream.precision(2); // This is how many digits after the decimal point there'll be
 	sstream << display_value;
 
 	return sstream.str();
