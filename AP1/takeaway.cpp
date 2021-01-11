@@ -18,6 +18,7 @@ Good luck!
 #include "Menu.h"
 #include "Order.h"
 #include "Item.h"
+#include "Helper.h"
 
 #include <iostream>
 #include <vector>
@@ -58,15 +59,51 @@ int main()
 		}
 		else if (command.compare("add") == 0)
 		{
-			//Item* choice; // you need to instantiate this using the menu object!
-			//order.add(choice);
+			// check all items in the array, if all subsequent elements are ints, continue. If not, spit out invalid command!
+			bool valid = true;
+			vector<int> choices;
 
-			// You may also wish to implement the ability to add multiple items at once!
-			// e.g. add 1 5 9 
+			
+			try {
+				for (std::size_t i = 1; i != parameters.size(); ++i) {
+					choices.push_back(std::stoi(parameters[i]));
+				}
+			}
+			catch (exception& e) {
+				Helper::ParameterError();
+				continue; // Continue outer loop, which will propt user for new command
+			}
+
+			// Now that we are sure that our parameters are valid, we can create the objects
+			Item* choice;
+			for (int index : choices) {
+				index--; // Remove 1 from index, since displayed/given index will be one higher than what it is in the menu list
+				choice = menu.items.at(index); // Fetch pointer
+				char type_code = menu.type_codes.at(index); // Fetch type code
+				order.add(choice, type_code); // Add to order list
+			}
 		}
 		else if (command.compare("remove") == 0)
 		{
+			if (parameters.size() == 2) {
+				int choice;
+				try {
+					choice = std::stoi(parameters[1]); // Checking for non-int error
+				}
+				catch (exception& e) {
+					Helper::ParameterError();
+					continue; // Make user retry command
+				}
 
+				int order_item_index = order.GetIndex(menu, choice); // This will be the index of the item in orders "items" vector. A value of -1 means not found.
+				if (order_item_index == -1) { // Checking if we even have a pointer to that Item object in order.items
+					Helper::ParameterError();
+					continue; // Make user retry command
+				}
+
+				// We do!
+				order.remove(order_item_index);
+			}
 		}
 		else if (command.compare("checkout") == 0)
 		{

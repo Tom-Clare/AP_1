@@ -3,6 +3,7 @@
 #include "Appetiser.h"
 #include "Beverage.h"
 #include "MainCourse.h"
+#include "Helper.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -23,15 +24,15 @@ Menu::Menu(std::string given_conf_file) {
 				Item* new_item_address;
 				if (menu_item[0] == "a") {
 					new_item_address = new Appetiser(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]), menu_item[4], menu_item[5]);
-					Add(new_item_address, 'a');
+					add(new_item_address, 'a');
 				}
 				else if (menu_item[0] == "m") {
 					new_item_address = new MainCourse(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]));
-					Add(new_item_address, 'm');
+					add(new_item_address, 'm');
 				}
 				else if (menu_item[0] == "b") {
 					new_item_address = new Beverage(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]), std::stoi(menu_item[6]), std::stof(menu_item[7]));
-					Add(new_item_address, 'b');
+					add(new_item_address, 'b');
 				}
 			}
 			catch (const std::exception& e) {
@@ -80,11 +81,11 @@ std::string Menu::toString() {
 		}
 
 		output.append("(" + std::to_string(i + 1) + ") "); // Display index number + 1
-		output.append(current_item->name() + ": ");
-		output.append(": \x9C " + moneyFormat(current_item->price())); // £ sign and then format because otherwise we have a bunch of zeros
-		output.append(", ");
-		output.append(std::to_string(current_item->calories()) + " cal ");
-
+		output.append(current_item->name() + ": "); // Name
+		output.append("\x9C " + Helper::FormatDoubleToString(current_item->price())); // £ sign and then formatted price because otherwise we have a bunch of zeros
+		output.append(", "); // Connector
+		output.append(std::to_string(current_item->calories()) + " cal "); // Calories
+		output.append(current_item->FormatExtra(current_item->Extras())); // Formatted brackets with extra info inside
 
 		output.append("\n");
 
@@ -107,13 +108,3 @@ std::string Menu::getHeading(std::string type_code) {
 	}
 }
 
-// Gives out a formatted string
-std::string Menu::moneyFormat(double display_value) {
-	std::string s;
-	std::stringstream sstream;
-	sstream.setf(std::ios::fixed);
-	sstream.precision(2); // This is how many digits after the decimal point there'll be
-	sstream << display_value;
-
-	return sstream.str();
-}

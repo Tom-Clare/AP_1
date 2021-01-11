@@ -17,3 +17,12 @@ Appetiser::Appetiser(std::string name, int calories, double price, std::string s
 	
 	return;
 }
+
+std::vector<std::string> Appetiser::Extras() { // returns all derived class associated attributes
+	std::vector<std::string> output;
+
+	if (shareable_) { output.push_back("shareable"); }
+	if (twoForOne_) { output.push_back("2-4-1"); }
+
+	return output;
+}

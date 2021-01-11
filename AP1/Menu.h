@@ -10,6 +10,5 @@ public:
 	std::vector<std::string> parseLine(std::string);
 	std::string toString();
 	std::string getHeading(std::string);
-	std::string moneyFormat(double);
 };
 
