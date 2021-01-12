@@ -70,22 +70,18 @@ std::string Menu::toString() {
 	std::string current = "";
 	std::string heading = "";
 
-	for (int i = 0; i < items.size(); i++) {
+	for (std::size_t i = 0; i < items.size(); i++) {
 
 		auto(*current_item) = items[i]; // can be used to interact with object
 
-		current = type_codes[i];
+		current = type_codes[i]; // Get current item catergory
 		if (current != old) { // new subheading
 			heading = getHeading(current);
 			output.append("--------------- " + heading + " ---------------\n");
 		}
 
 		output.append("(" + std::to_string(i + 1) + ") "); // Display index number + 1
-		output.append(current_item->name() + ": "); // Name
-		output.append("\x9C " + Helper::FormatDoubleToString(current_item->price())); // £ sign and then formatted price because otherwise we have a bunch of zeros
-		output.append(", "); // Connector
-		output.append(std::to_string(current_item->calories()) + " cal "); // Calories
-		output.append(current_item->FormatExtra(current_item->Extras())); // Formatted brackets with extra info inside
+		output.append(current_item->toString()); // Output object
 
 		output.append("\n");
 
@@ -96,7 +92,7 @@ std::string Menu::toString() {
 }
 
 // This will return the respective heading for the type of menu item
-std::string Menu::getHeading(std::string type_code) {
+std::string Menu::getHeading(std::string type_code) {  ///////////////////////////////////////// Could be enums
 	if (type_code == "a") {
 		return "Appetisers";
 	}

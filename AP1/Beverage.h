@@ -3,7 +3,6 @@
 #include <string>
 #include "Item.h"
 
-using namespace std;
 
 class Beverage : public Item
 {
@@ -14,8 +13,6 @@ public:
 	Beverage(std::string, int, double, int, float);
 	std::vector<std::string> Extras(); // See parent for further explaination
 	bool isAlcoholic() { return abv() > 0 ? true : false; }
-
-	string toString() { return name(); }
 
 	// Getters
 	float abv() { return abv_; }

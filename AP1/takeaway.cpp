@@ -62,7 +62,6 @@ int main()
 			// check all items in the array, if all subsequent elements are ints, continue. If not, spit out invalid command!
 			bool valid = true;
 			vector<int> choices;
-
 			
 			try {
 				for (std::size_t i = 1; i != parameters.size(); ++i) {
@@ -95,7 +94,7 @@ int main()
 					continue; // Make user retry command
 				}
 
-				int order_item_index = order.GetIndex(menu, choice); // This will be the index of the item in orders "items" vector. A value of -1 means not found.
+				int order_item_index = order.getIndex(menu, choice); // This will be the index of the item in orders "items" vector. A value of -1 means not found.
 				if (order_item_index == -1) { // Checking if we even have a pointer to that Item object in order.items
 					Helper::ParameterError();
 					continue; // Make user retry command
@@ -107,7 +106,7 @@ int main()
 		}
 		else if (command.compare("checkout") == 0)
 		{
-
+			order.checkout();
 		}
 		else if (command.compare("help") == 0)
 		{

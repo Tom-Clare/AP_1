@@ -15,6 +15,5 @@ public:
 	std::vector<std::string> Extras(); // See parent for further explaination
 	bool shareable() { return shareable_; }
 	bool twoForOne() { return twoForOne_; }
-	std::string toString() { return name(); }
 };
 

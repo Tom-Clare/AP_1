@@ -1,4 +1,5 @@
 #include "Item.h"
+#include "Helper.h"
 
 Item::Item(std::string name, int calories, double price) {
 	name_ = name;
@@ -23,6 +24,18 @@ std::string Item::FormatExtra(std::vector<std::string> extras_list) {
 		}
 	}
 	output.append(")");
+
+	return output;
+}
+
+std::string Item::toString() {
+	std::string output = "";
+
+	output.append(this->name() + ": "); // Name
+	output.append("\x9C " + Helper::FormatDoubleToString(this->price())); // £ sign and then formatted price because otherwise we have a bunch of zeros
+	output.append(", "); // Connector
+	output.append(std::to_string(this->calories()) + " cal "); // Calories
+	output.append(this->FormatExtra(this->Extras())); // Formatted brackets with extra info inside
 
 	return output;
 }

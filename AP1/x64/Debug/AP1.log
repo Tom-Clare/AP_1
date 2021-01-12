@@ -1,4 +1,3 @@
-﻿  takeaway.cpp
-C:\Users\GLaDOS MkII\Documents\uni\projects\second_year\AP\AP1\takeaway.cpp(72,22): warning C4101: 'e': unreferenced local variable
-C:\Users\GLaDOS MkII\Documents\uni\projects\second_year\AP\AP1\takeaway.cpp(93,23): warning C4101: 'e': unreferenced local variable
+﻿  Order.cpp
+C:\Users\GLaDOS MkII\Documents\uni\projects\second_year\AP\AP1\Order.cpp(13,12): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   AP1.vcxproj -> C:\Users\GLaDOS MkII\Documents\uni\projects\second_year\AP\x64\Debug\AP1.exe

@@ -13,7 +13,7 @@ private:
 	double price_;
 public:
 	Item(std::string, int, double);
-	virtual std::string toString() = 0;
+	virtual std::string toString();
 	virtual std::vector<std::string> Extras() = 0; // This should return a vector of all extra attributes of the dervied class
 	std::string FormatExtra(std::vector<std::string>); // This is a helper method for Extras()
 	std::string name() { return name_; }

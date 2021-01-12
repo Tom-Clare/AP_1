@@ -4,11 +4,13 @@
 #include "Item.h"
 #include "Menu.h"
 
-using namespace std;
-
 class Order : public ItemList
 {
 public:
-	int GetIndex(Menu, int);
+	int getIndex(Menu, int);
+	double calculateTotal();
+	void printRecipt();
+	std::string toString();
+	void checkout();
 };
 
