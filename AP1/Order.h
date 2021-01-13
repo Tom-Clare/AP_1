@@ -6,11 +6,13 @@
 
 class Order : public ItemList
 {
+private:
+	double total_;
 public:
 	int getIndex(Menu, int);
-	double calculateTotal();
+	std::string calculateTotal(Menu);
 	void printRecipt();
 	std::string toString();
-	void checkout();
+	void checkout(Menu);
 };
 

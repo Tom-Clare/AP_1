@@ -11,6 +11,8 @@ private:
 	bool shareable_;
 	bool twoForOne_;
 public:
+	char item_code = 'a';
+
 	Appetiser(std::string, int, double, std::string, std::string);
 	std::vector<std::string> Extras(); // See parent for further explaination
 	bool shareable() { return shareable_; }
