@@ -10,7 +10,7 @@ private:
 	float abv_;
 	int volume_;
 public:
-	char item_code = 'b';
+	std::string item_code() { return "b"; }
 
 	Beverage(std::string, int, double, int, float);
 	std::vector<std::string> Extras(); // See parent for further explaination

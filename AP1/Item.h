@@ -12,8 +12,7 @@ private:
 	int calories_;
 	double price_;
 public:
-	char item_code = 0;
-
+	virtual std::string item_code() = 0;
 	Item(std::string, int, double);
 	virtual std::string toString();
 	virtual std::vector<std::string> Extras() = 0; // This should return a vector of all extra attributes of the dervied class
