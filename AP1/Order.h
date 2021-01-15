@@ -10,9 +10,9 @@ private:
 	double total_;
 public:
 	int getIndex(Menu, int);
-	std::string calculateTotal(std::string);
+	std::string calculateTotal();
 	void printRecipt();
-	std::string toString(std::string);
+	std::string toString();
 	void checkout();
 	void confirmOrder();
 };

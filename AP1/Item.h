@@ -14,7 +14,7 @@ private:
 public:
 	virtual std::string item_code() = 0;
 	Item(std::string, int, double);
-	virtual std::string toString(std::string);
+	virtual std::string toString();
 	virtual std::vector<std::string> Extras() = 0; // This should return a vector of all extra attributes of the dervied class
 	std::string FormatExtra(std::vector<std::string>); // This is a helper method for Extras()
 	std::string name() { return name_; }

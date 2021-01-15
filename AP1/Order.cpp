@@ -23,13 +23,13 @@ int Order::getIndex(Menu menu, int menu_number) { // Get index of item in menu o
 }
 
 void Order::checkout() {
-	std::cout << this->toString("cl");
+	std::cout << this->toString();
 	std::cout << "\n";
 	this->confirmOrder();
 	return;
 }
 
-std::string Order::toString(std::string env) {
+std::string Order::toString() {
 	std::string output = "";
 
 	// We need to print out the order items in the same way as we did with the menu
@@ -38,19 +38,19 @@ std::string Order::toString(std::string env) {
 	for (std::size_t i = 0; i != this->items.size(); ++i) {
 
 		auto(*current_item) = this->items[i]; // can be used to interact with object
-		output.append(current_item->toString(env));
+		output.append(current_item->toString());
 		output.append("\n");
 
 	}
 
 	output.append("------------------------------\n");
 
-	output.append(this->calculateTotal(env));
+	output.append(this->calculateTotal());
 
 	return output;
 }
 
-std::string Order::calculateTotal(std::string env) {
+std::string Order::calculateTotal() {
 	std::string output = "";
 	Appetiser* appetiser_handle;
 	int twoForOne_clock = 0;
@@ -81,10 +81,10 @@ std::string Order::calculateTotal(std::string env) {
 
 	if (discount > 0) {
         total = total - discount;
-		output.append("2-4-1 discount applied! Savings: " + std::string(env == "cl" ? "\x9C" : "\u00A3") + Helper::FormatDoubleToString(discount) + "\n");
+		output.append("2-4-1 discount applied! Savings: " + std::string(u8"\u00A3") + Helper::FormatDoubleToString(discount) + "\n");
 	}
 
-	output.append("Total: " + std::string(env == "cl" ? "\x9C" : "\u00A3") + Helper::FormatDoubleToString(total));
+	output.append("Total: " + std::string(u8"\u00A3") + Helper::FormatDoubleToString(total));
 	
 
 	// Get total for order
@@ -107,7 +107,7 @@ void Order::confirmOrder() {
 		// write to receipt.txt
 		ofstream receipt;
 		receipt.open("receipt.txt");
-		receipt << this->toString("file"); // Output order object as string
+		receipt << this->toString(); // Output order object as string
 		receipt.close();
 
 		// delete all objects (do we need to?)

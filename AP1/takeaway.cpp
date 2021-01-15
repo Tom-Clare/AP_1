@@ -20,6 +20,9 @@ Good luck!
 #include "Item.h"
 #include "Helper.h"
 
+#include <stdio.h>
+#include <windows.h>
+
 #include <iostream>
 #include <vector>
 #include <cstring>
@@ -28,6 +31,8 @@ using namespace std;
 
 int main()
 {
+	SetConsoleOutputCP(CP_UTF8);
+
 	string userCommand;
 	vector <string> parameters;
 

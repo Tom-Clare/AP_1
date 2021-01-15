@@ -11,5 +11,6 @@ public:
 	std::vector<char> type_codes;
 	void add(Item*, char);
 	void remove(int);
+	virtual std::string toString() = 0;
 };
 
