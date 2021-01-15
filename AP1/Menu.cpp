@@ -81,7 +81,7 @@ std::string Menu::toString() {
 		}
 
 		output.append("(" + std::to_string(i + 1) + ") "); // Display index number + 1
-		output.append(current_item->toString()); // Output object
+		output.append(current_item->toString("cl")); // Output object
 
 		output.append("\n");
 

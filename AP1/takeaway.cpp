@@ -106,7 +106,7 @@ int main()
 		}
 		else if (command.compare("checkout") == 0)
 		{
-			order.checkout(menu);
+			order.checkout();
 		}
 		else if (command.compare("help") == 0)
 		{

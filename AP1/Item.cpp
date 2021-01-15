@@ -28,11 +28,12 @@ std::string Item::FormatExtra(std::vector<std::string> extras_list) {
 	return output;
 }
 
-std::string Item::toString() {
+std::string Item::toString(std::string env) {
 	std::string output = "";
 
 	output.append(this->name() + ": "); // Name
-	output.append("\x9C " + Helper::FormatDoubleToString(this->price())); // £ sign and then formatted price because otherwise we have a bunch of zeros
+	output.append(env == "cl" ? "\x9C" : "\u00A3");
+	output.append(Helper::FormatDoubleToString(this->price())); // £ sign and then formatted price because otherwise we have a bunch of zeros
 	output.append(", "); // Connector
 	output.append(std::to_string(this->calories()) + " cal "); // Calories
 	output.append(this->FormatExtra(this->Extras())); // Formatted brackets with extra info inside

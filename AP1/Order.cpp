@@ -1,7 +1,10 @@
 #include "Order.h"
 #include "Menu.h"
 #include "Appetiser.h"
+#include "Helper.h"
+#include "stdio.h""
 #include <iostream>
+#include <fstream>
 #include <map>
 
 // Write the checkout confirmation screen, reusing Menu's toString() method.
@@ -19,12 +22,14 @@ int Order::getIndex(Menu menu, int menu_number) { // Get index of item in menu o
 	return -1; // If not found, return -1 (as an error code!)
 }
 
-void Order::checkout(Menu menu) {
-	std::cout << this->toString();
-	std::cout << this->calculateTotal();
+void Order::checkout() {
+	std::cout << this->toString("cl");
+	std::cout << "\n";
+	this->confirmOrder();
+	return;
 }
 
-std::string Order::toString() {
+std::string Order::toString(std::string env) {
 	std::string output = "";
 
 	// We need to print out the order items in the same way as we did with the menu
@@ -33,17 +38,19 @@ std::string Order::toString() {
 	for (std::size_t i = 0; i != this->items.size(); ++i) {
 
 		auto(*current_item) = this->items[i]; // can be used to interact with object
-		output.append(current_item->toString());
+		output.append(current_item->toString(env));
 		output.append("\n");
 
 	}
 
 	output.append("------------------------------\n");
 
+	output.append(this->calculateTotal(env));
+
 	return output;
 }
 
-std::string Order::calculateTotal() {
+std::string Order::calculateTotal(std::string env) {
 	std::string output = "";
 	Appetiser* appetiser_handle;
 	int twoForOne_clock = 0;
@@ -72,9 +79,41 @@ std::string Order::calculateTotal() {
 
 	}
 
-	total = total - discount;
+	if (discount > 0) {
+        total = total - discount;
+		output.append("2-4-1 discount applied! Savings: " + std::string(env == "cl" ? "\x9C" : "\u00A3") + Helper::FormatDoubleToString(discount) + "\n");
+	}
+
+	output.append("Total: " + std::string(env == "cl" ? "\x9C" : "\u00A3") + Helper::FormatDoubleToString(total));
+	
 
 	// Get total for order
 
 	return output;
+}
+
+void Order::confirmOrder() {
+
+	std::string command;
+
+	// Ask if they want to confirm
+	std::cout << "Type 'y' to confirm, or 'n' to go back and modify it.\n";
+	std::cin >> command;
+	if (command == "n") { // if no, return
+		std::cin.ignore();
+		return;
+	}
+	else if (command == "y") {// if yes...
+		// write to receipt.txt
+		ofstream receipt;
+		receipt.open("receipt.txt");
+		receipt << this->toString("file"); // Output order object as string
+		receipt.close();
+
+		// delete all objects (do we need to?)
+
+		// then exit program
+		exit(0);
+	}
+	
 }
