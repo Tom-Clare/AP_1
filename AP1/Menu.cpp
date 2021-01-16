@@ -24,15 +24,15 @@ Menu::Menu(std::string given_conf_file) {
 				Item* new_item_address;
 				if (menu_item[0] == "a") {
 					new_item_address = new Appetiser(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]), menu_item[4], menu_item[5]);
-					add(new_item_address, 'a');
+					add(new_item_address, 'a', false);
 				}
 				else if (menu_item[0] == "m") {
 					new_item_address = new MainCourse(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]));
-					add(new_item_address, 'm');
+					add(new_item_address, 'm', false);
 				}
 				else if (menu_item[0] == "b") {
 					new_item_address = new Beverage(menu_item[1], std::stoi(menu_item[3]), std::stod(menu_item[2]), std::stoi(menu_item[6]), std::stof(menu_item[7]));
-					add(new_item_address, 'b');
+					add(new_item_address, 'b', false);
 				}
 			}
 			catch (const std::exception& e) {

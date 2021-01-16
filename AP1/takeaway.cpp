@@ -84,7 +84,7 @@ int main()
 				index--; // Remove 1 from index, since displayed/given index will be one higher than what it is in the menu list
 				choice = menu.items.at(index); // Fetch pointer
 				char type_code = menu.type_codes.at(index); // Fetch type code
-				order.add(choice, type_code); // Add to order list
+				order.add(choice, type_code, true); // Add to order list
 			}
 		}
 		else if (command.compare("remove") == 0)
