@@ -39,7 +39,6 @@ Menu::Menu(std::string given_conf_file) {
 				cout << "ERROR: menu.csv is invalid.";
 				exit(EXIT_FAILURE);
 			}
-			/////////////////////////  TODO: format menu toString()
 		}
 		active_conf_file.close();
 	}

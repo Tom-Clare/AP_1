@@ -40,3 +40,11 @@ std::string Item::toString() {
 
 	return output;
 }
+
+bool operator<(Item& left, Item& right) {
+	if (left.price() < right.price()) {
+		return true;
+	}
+
+	return false;
+}
