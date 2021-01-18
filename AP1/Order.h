@@ -15,6 +15,5 @@ public:
 	std::string toString();
 	void checkout(Menu*);
 	void confirmOrder(Menu*);
-	std::string informUser();
 };
 

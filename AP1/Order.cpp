@@ -26,10 +26,9 @@ int Order::getIndex(Menu menu, int menu_number) { // Get index of item in menu o
 
 void Order::checkout(Menu* menu) {
 
-	std::cout << "========== Checkout ==========\n";
+	std::cout << "========== Checkout ==========" << endl;
 
-	std::cout << this->toString();
-	std::cout << "\n";
+	std::cout << this->toString() << endl;
 	this->confirmOrder(menu);
 	return;
 }
@@ -98,7 +97,7 @@ void Order::confirmOrder(Menu* menu) {
 	std::string command;
 
 	// Ask if they want to confirm
-	std::cout << "Type 'y' to confirm, or 'n' to go back and modify it.\n";
+	std::cout << "Type 'y' to confirm, or 'n' to go back and modify it." << endl;
 	std::cin >> command;
 	if (command == "n") { // if no, return
 		std::cin.ignore();

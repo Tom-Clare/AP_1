@@ -16,7 +16,7 @@ std::string Helper::FormatDoubleToString(double display_value) {
 }
 
 void Helper::ParameterError() {
-	std::cout << "Invalid parameters. Type \"help\" to see the help section.\n";
+	std::cout << "Invalid parameters. Type \"help\" to see the help section." << endl;
 }
 
 void Helper::CleanExit(Menu* menu) {

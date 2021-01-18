@@ -65,7 +65,6 @@ int main()
 		else if (command.compare("add") == 0)
 		{
 			// check all items in the array, if all subsequent elements are ints, continue. If not, spit out invalid command!
-			bool valid = true;
 			vector<int> choices;
 			
 			try {
@@ -78,6 +77,19 @@ int main()
 				continue; // Continue outer loop, which will propt user for new command
 			}
 
+			bool valid = true;
+			for (int index : choices) {
+				if (index > menu.items.size() + 1) {
+					Helper::ParameterError();
+					valid = false;
+					break;
+				}
+			}
+			if (!valid) {
+				parameters.clear();
+				continue;
+			}
+
 			// Now that we are sure that our parameters are valid, we can create the objects
 			Item* choice;
 			for (int index : choices) {
@@ -85,6 +97,7 @@ int main()
 				choice = menu.items.at(index); // Fetch pointer
 				char type_code = menu.type_codes.at(index); // Fetch type code
 				order.add(choice, type_code, true); // Add to order list
+				cout << order.calculateTotal() << endl;
 			}
 		}
 		else if (command.compare("remove") == 0)
@@ -107,6 +120,7 @@ int main()
 
 				// We do!
 				order.remove(order_item_index, true);
+				cout << order.calculateTotal() << "\n";
 			}
 		}
 		else if (command.compare("checkout") == 0)
@@ -115,11 +129,14 @@ int main()
 		}
 		else if (command.compare("help") == 0)
 		{
-			cout << "To add something to the order, type \"add [x]\", where [x] is the number of the item on the menu.\nYou can remove the item again by using \"remove [x]\". To complete your order, you can type \"checkout\".\n";
+			cout << "To add something to the order, type \"add [x]\", where [x] is the number of the item on the menu." << endl << "You can remove the item again by using \"remove [x]\". To complete your order, you can type \"checkout\"." << endl;
 		}
 		else if (command.compare("exit") == 0)
 		{
 			Helper::CleanExit(&menu);
+		}
+		else {
+			Helper::ParameterError();
 		}
 
 		parameters.clear();

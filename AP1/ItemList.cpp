@@ -7,7 +7,7 @@ void ItemList::add(Item* item_pointer, char type_code, bool output) {
 
 	if (output) {
 		auto(*added_obj) = item_pointer;
-		std::cout << added_obj->name() << " added to order!\n";
+		std::cout << added_obj->name() << " added to order!" << endl;
 	}
 }
 
@@ -15,6 +15,6 @@ void ItemList::remove(int index, bool output) {
 	items.erase(items.begin() + index);
 
 	if (output) {
-		std::cout << "Removed from order!\n";
+		std::cout << "Removed from order!" << endl;
 	}
 }
