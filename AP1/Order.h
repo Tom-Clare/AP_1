@@ -11,9 +11,10 @@ private:
 public:
 	int getIndex(Menu, int);
 	std::string calculateTotal();
-	void printRecipt();
+	void printReceipt();
 	std::string toString();
-	void checkout();
-	void confirmOrder();
+	void checkout(Menu*);
+	void confirmOrder(Menu*);
+	std::string informUser();
 };
 

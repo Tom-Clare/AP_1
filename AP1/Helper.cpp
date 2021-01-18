@@ -18,3 +18,12 @@ std::string Helper::FormatDoubleToString(double display_value) {
 void Helper::ParameterError() {
 	std::cout << "Invalid parameters. Type \"help\" to see the help section.\n";
 }
+
+void Helper::CleanExit(Menu* menu) {
+	//iterate through menu.items and remove them all!
+	for (auto& item : menu->items) {
+		delete item;
+	}
+
+	exit(0);
+}

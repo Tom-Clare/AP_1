@@ -11,6 +11,10 @@ void ItemList::add(Item* item_pointer, char type_code, bool output) {
 	}
 }
 
-void ItemList::remove(int index) {
+void ItemList::remove(int index, bool output) {
 	items.erase(items.begin() + index);
+
+	if (output) {
+		std::cout << "Removed from order!\n";
+	}
 }

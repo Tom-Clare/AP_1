@@ -10,7 +10,7 @@ public:
 	std::vector<Item*> items;
 	std::vector<char> type_codes;
 	void add(Item*, char, bool);
-	void remove(int);
+	void remove(int, bool);
 	virtual std::string toString() = 0;
 };
 

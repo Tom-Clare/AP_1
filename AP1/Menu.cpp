@@ -56,7 +56,7 @@ std::vector<std::string> Menu::parseLine(std::string line) {
 	line_stream.str(line);
 
 	while (std::getline(line_stream, token, ',')) {
-		result.push_back(token);  
+		result.push_back(token);
 	}
 	return result;
 }
@@ -91,14 +91,16 @@ std::string Menu::toString() {
 }
 
 // This will return the respective heading for the type of menu item
-std::string Menu::getHeading(std::string type_code) {  ///////////////////////////////////////// Could be enums
+std::string Menu::getHeading(std::string type_code) { 
 	if (type_code == "a") {
 		return "Appetisers";
 	}
 	else if (type_code == "m") {
 		return "Main Courses";
 	}
-	else {
+	else if (type_code == "b") {
 		return "Beverages";
 	}
+
+	return "";
 }

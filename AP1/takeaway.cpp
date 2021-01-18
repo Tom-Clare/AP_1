@@ -106,16 +106,20 @@ int main()
 				}
 
 				// We do!
-				order.remove(order_item_index);
+				order.remove(order_item_index, true);
 			}
 		}
 		else if (command.compare("checkout") == 0)
 		{
-			order.checkout();
+			order.checkout(&menu);
 		}
 		else if (command.compare("help") == 0)
 		{
-
+			cout << "To add something to the order, type \"add [x]\", where [x] is the number of the item on the menu.\nYou can remove the item again by using \"remove [x]\". To complete your order, you can type \"checkout\".\n";
+		}
+		else if (command.compare("exit") == 0)
+		{
+			Helper::CleanExit(&menu);
 		}
 
 		parameters.clear();

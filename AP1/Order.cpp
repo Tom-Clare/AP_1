@@ -5,12 +5,14 @@
 #include "stdio.h""
 #include <iostream>
 #include <fstream>
-#include <map>
 
 // Write the checkout confirmation screen, reusing Menu's toString() method.
 
 int Order::getIndex(Menu menu, int menu_number) { // Get index of item in menu object's itemlist from the number shown on the menu
-
+	if (menu_number < 0 || menu_number > menu.items.size() - 1) {
+		return -1;
+	}
+	
 	Item* menu_item_pointer = menu.items[menu_number-1]; // Access menu's itemList, get pointer for given menu number
 
 	for (std::size_t i = 0; i != this->items.size(); ++i) { // Iterate over order.items...
@@ -22,10 +24,13 @@ int Order::getIndex(Menu menu, int menu_number) { // Get index of item in menu o
 	return -1; // If not found, return -1 (as an error code!)
 }
 
-void Order::checkout() {
+void Order::checkout(Menu* menu) {
+
+	std::cout << "========== Checkout ==========\n";
+
 	std::cout << this->toString();
 	std::cout << "\n";
-	this->confirmOrder();
+	this->confirmOrder(menu);
 	return;
 }
 
@@ -33,14 +38,10 @@ std::string Order::toString() {
 	std::string output = "";
 
 	// We need to print out the order items in the same way as we did with the menu
-	output.append("========== Checkout ==========\n");
-
 	for (std::size_t i = 0; i != this->items.size(); ++i) {
-
 		auto(*current_item) = this->items[i]; // can be used to interact with object
 		output.append(current_item->toString());
 		output.append("\n");
-
 	}
 
 	output.append("------------------------------\n");
@@ -92,7 +93,7 @@ std::string Order::calculateTotal() {
 	return output;
 }
 
-void Order::confirmOrder() {
+void Order::confirmOrder(Menu* menu) {
 
 	std::string command;
 
@@ -104,16 +105,18 @@ void Order::confirmOrder() {
 		return;
 	}
 	else if (command == "y") {// if yes...
-		// write to receipt.txt
-		ofstream receipt;
-		receipt.open("receipt.txt");
-		receipt << this->toString(); // Output order object as string
-		receipt.close();
+		// give receipt
+		this->printReceipt();
 
-		// delete all objects (do we need to?)
-
-		// then exit program
-		exit(0);
+		// delete all item objects and exit program
+		Helper::CleanExit(menu);
 	}
 	
+}
+
+void Order::printReceipt() {
+	ofstream receipt;
+	receipt.open("receipt.txt");
+	receipt << this->toString(); // Output order object as string
+	receipt.close();
 }
